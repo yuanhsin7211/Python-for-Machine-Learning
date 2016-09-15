@@ -51,6 +51,23 @@ lm.params
 lm.summary()
 
 ## Method 2 : Scikit-Learn  ##
+feature_cols = ['TV','Radio','Newspaper']
+x = data[feature_cols]
+y = data.Sales
+
+# sklearn path: import, instantiate, fit
+from sklearn.linear_model import LinearRegression
+lm = LinearRegression()
+lm.fit(x,y)
+
+print lm.intercept_
+print lm.coef_
+
+zip(feature_cols,lm.coef_)
+
+lm.predict([100,25,25])
+
+lm.score(x,y)
 
 
 
