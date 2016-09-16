@@ -69,7 +69,30 @@ lm.predict([100,25,25])
 
 lm.score(x,y)
 
+## Handle Categorical Predictors ##
 
+import numpy as np
+
+np.random.seed(12345) # ticket for fixed random seed
+nums = np.random.rand(len(data))  #return 0-1
+
+mask_large = nums > 0.5 
+
+data['Size'] = 'small'   # initially set Size to small
+data.loc[mask_large,'Size'] = 'large' 
+data.head()
+
+data['IsLarge'] = data.Size.map({'small':0,'large':1})
+data.head()
+
+# create x,y
+feature_cols = ['TV','Radio','Newspaper','IsLarge']
+x = data[feature_cols]
+y = data.Sales
+
+lm = LinearRegression()
+lm.fit(x,y)
+zip(feature_cols,lm.coef_)
 
 
 
